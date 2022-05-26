@@ -1,7 +1,7 @@
 // get values
 function getValues(){
-    let fizz = document.getElementById("inputfizz").value;
-    let buzz = document.getElementById("inputbuzz").value;
+    let fizz = parseInt(document.getElementById("inputfizz").value);
+    let buzz = parseInt(document.getElementById("inputbuzz").value);
     return [fizz,buzz];
 }
 
@@ -10,15 +10,10 @@ function calcValues(fizzbuzz){
     let results = [];
     let value = 1;
     for (let index = 1; index < 101; index++) {
-        if (index % fizzbuzz[0] == 0 && index % fizzbuzz[1] == 0) {
-            value = 'FizzBuzz'
-        } else if(index % fizzbuzz[0] == 0) {
-            value = 'Fizz'
-        } else if (index % fizzbuzz[1] == 0) {
-            value = 'Buzz'
-        } else {
-            value = index
-        };
+        if (index % fizzbuzz[0] == 0 && index % fizzbuzz[1] == 0) {value = 'FizzBuzz'} 
+        else if(index % fizzbuzz[0] == 0) {value = 'Fizz'} 
+        else if (index % fizzbuzz[1] == 0) {value = 'Buzz'} 
+        else {value = index};
         results.push(value);
     }
     return results
@@ -26,12 +21,18 @@ function calcValues(fizzbuzz){
 
 // display results
 function displayValues(fizzbuzz){
-    let templateRows = '<tr>';
+    let templateRows = `<tr>`;
     for (let index = 0; index < fizzbuzz.length; index++) {
         let temp ="";
-        if ((index+1) % 5 == 0){temp = `<td>${fizzbuzz[index]}</td></tr><tr>`
-            } else {temp = `<td>${fizzbuzz[index]}</td>`
-            }
+        let temp2="";
+        // Applies classes for CSS
+        if      (fizzbuzz[index] == 'FizzBuzz') {temp2 = `<td class="fizzbuzz">${fizzbuzz[index]}`}
+        else if (fizzbuzz[index] == 'Fizz')     {temp2 = `<td class="fizz">${fizzbuzz[index]}`}
+        else if (fizzbuzz[index] == 'Buzz')     {temp2 = `<td class="buzz">${fizzbuzz[index]}`}
+        else                                    {temp2 = `<td>${fizzbuzz[index]}`};
+        // Adds new table row tags every 5 columns. 
+        if      ((index+1) % 5 == 0){temp = `${temp2}</td></tr><tr>`}
+        else                        {temp = `${temp2}</td>`};
         templateRows += temp;
         };
     templateRows += `</tr>`

@@ -55,59 +55,58 @@
     <!-- === Main === -->
     <main class="flex-shrink-0">
        <div class="container py-5 px-5 mt-5">
-           <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+           <h2 class="border-1 border-bottom border-dark">The Code for Fizz Buzz</h2>
            <div class="row row-cols-1 row-cols-lg-2">
-               <div class="col-lg-8">
+               <div class="col-lg-8 order-last order-lg-first">
                    <pre class="line-numbers"><code class="language-javascript">
         
-// get values
-function getValues(){
-    let fizz = document.getElementById("inputfizz").value;
-    let buzz = document.getElementById("inputbuzz").value;
-    return [fizz,buzz];
-}
-
-// logic
-function calcValues(fizzbuzz){
-    let results = [];
-    let value = 1;
-    for (let index = 1; index < 101; index++) {
-        if (index % fizzbuzz[0] == 0 && index % fizzbuzz[1] == 0) {
-            value = 'FizzBuzz'
-        } else if(index % fizzbuzz[0] == 0) {
-            value = 'Fizz'
-        } else if (index % fizzbuzz[1] == 0) {
-            value = 'Buzz'
-        } else {
-            value = index
-        };
-        results.push(value);
-    }
-    return results
-}
-
-// display results
-function displayValues(fizzbuzz){
-    let templateRows = '&lt;tr>';
-    for (let index = 0; index < fizzbuzz.length; index++) {
-        let temp ="";
-        if ((index+1) % 5 == 0){temp = `&lt;td>${fizzbuzz[index]}&lt;td>&lt;/tr>&lt;tr>`
-            } else {temp = `&lt;td>${fizzbuzz[index]}&lt;/td>`
-            }
-        templateRows += temp;
-        };
-    templateRows += `&lt;/tr>`
-    document.getElementById("results").innerHTML = templateRows
-}
-
-// main
-function main(){
-    displayValues(calcValues(getValues()));
-}
+                    // get values
+                    function getValues(){
+                        let fizz = parseInt(document.getElementById("inputfizz").value);
+                        let buzz = parseInt(document.getElementById("inputbuzz").value);
+                        return [fizz,buzz];
+                    }
+                    
+                    // logic
+                    function calcValues(fizzbuzz){
+                        let results = [];
+                        let value = 1;
+                        for (let index = 1; index < 101; index++) {
+                            if (index % fizzbuzz[0] == 0 && index % fizzbuzz[1] == 0) {value = 'FizzBuzz'} 
+                            else if(index % fizzbuzz[0] == 0) {value = 'Fizz'} 
+                            else if (index % fizzbuzz[1] == 0) {value = 'Buzz'} 
+                            else {value = index};
+                            results.push(value);
+                        }
+                        return results
+                    }
+                    
+                    // display results
+                    function displayValues(fizzbuzz){
+                        let templateRows = `&lt;tr>`;
+                        for (let index = 0; index < fizzbuzz.length; index++) {
+                            let temp ="";
+                            let temp2="";
+                            if      (fizzbuzz[index] == 'FizzBuzz') {temp2 = `&lt;td class="fizzbuzz">${fizzbuzz[index]}`}
+                            else if (fizzbuzz[index] == 'Fizz')     {temp2 = `&lt;td class="fizz">${fizzbuzz[index]}`}
+                            else if (fizzbuzz[index] == 'Buzz')     {temp2 = `&lt;td class="buzz">${fizzbuzz[index]}`}
+                            else                                    {temp2 = `&lt;td>${fizzbuzz[index]}`};
+                            if      ((index+1) % 5 == 0){temp = `${temp2}&lt;/td>&lt;tr>&lt;tr>`}
+                            else                        {temp = `${temp2}&lt;td>`};
+                            templateRows += temp;
+                            };
+                        templateRows += `&lt;tr>`
+                        document.getElementById("results").innerHTML = templateRows
+                    }
+                    
+                    // main
+                    function main(){
+                        displayValues(calcValues(getValues()));
+                    }
 
                    </code></pre>
                </div>
-               <div class="col-lg-4">
+               <div class="col-lg-4 bg-white">
                    <p>The Code is structured in four functions.</p>
                    <h5>main()</h5>
                    <p>The main() function is 3 other nested functions 1) getValues(), 2) 
@@ -127,7 +126,8 @@ function main(){
                     the results adding each value between &lt;td>&lt;/td>.It also checks the index
                     if divisible by 5 and if so, to add a new table row tags of &lt;/tr>&lt;tr>. 
                     Closing one row and starting another. Finishing the loop the final &lt;/tr> tag 
-                    is added. It then modifies the ElementId="results" with the .innerHMTL method. 
+                    is added. There is another if statement to add styling classes.  Finally it
+                    then modifies the ElementId="results" with the .innerHMTL method. 
                     </p>
                </div>
            </div>
