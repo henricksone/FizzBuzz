@@ -1,12 +1,13 @@
 :root{
-    --primary-color: #01008c;
-    --secondary-color: #fdc30b;
+    --primary-color: #3a6229;
+    --secondary-color: #67b231;
     --dark-color: #000000;
     --white-color: #e7e7e7;
 }
 
 body {
     color:var(--dark-color);
+    background-color: var(--secondary-color);
 }
 
 nav {

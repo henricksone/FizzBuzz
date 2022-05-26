@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by Henricksone</title>
+    <title>FizzBuzz: A Coding Project by Henricksone</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -25,7 +25,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="/img/EH-Logo.png" class="d-inline-block align-text-top" alt="Henricksone Logo" height="24"> APP NAME</a>
+            <img src="/img/EH-Logo.png" class="d-inline-block align-text-top" alt="Henricksone Logo" height="24"> FIZZ BUZZ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -59,16 +59,76 @@
            <div class="row row-cols-1 row-cols-lg-2">
                <div class="col-lg-8">
                    <pre class="line-numbers"><code class="language-javascript">
-                    // Call Hello World
-                    function HelloWorld(){
-                        alert("hello World");
-                    }
+        
+// get values
+function getValues(){
+    let fizz = document.getElementById("inputfizz").value;
+    let buzz = document.getElementById("inputbuzz").value;
+    return [fizz,buzz];
+}
+
+// logic
+function calcValues(fizzbuzz){
+    let results = [];
+    let value = 1;
+    for (let index = 1; index < 101; index++) {
+        if (index % fizzbuzz[0] == 0 && index % fizzbuzz[1] == 0) {
+            value = 'FizzBuzz'
+        } else if(index % fizzbuzz[0] == 0) {
+            value = 'Fizz'
+        } else if (index % fizzbuzz[1] == 0) {
+            value = 'Buzz'
+        } else {
+            value = index
+        };
+        results.push(value);
+    }
+    return results
+}
+
+// display results
+function displayValues(fizzbuzz){
+    let templateRows = '&lt;tr>';
+    for (let index = 0; index < fizzbuzz.length; index++) {
+        let temp ="";
+        if ((index+1) % 5 == 0){temp = `&lt;td>${fizzbuzz[index]}&lt;td>&lt;/tr>&lt;tr>`
+            } else {temp = `&lt;td>${fizzbuzz[index]}&lt;/td>`
+            }
+        templateRows += temp;
+        };
+    templateRows += `&lt;/tr>`
+    document.getElementById("results").innerHTML = templateRows
+}
+
+// main
+function main(){
+    displayValues(calcValues(getValues()));
+}
+
                    </code></pre>
                </div>
                <div class="col-lg-4">
-                   <p>The Code is structured in one function.</p>
-                   <h5>Hello World</h5>
-                   <p>Hello World is a function that displays an alert with a message of "Hello World".</p>
+                   <p>The Code is structured in four functions.</p>
+                   <h5>main()</h5>
+                   <p>The main() function is 3 other nested functions 1) getValues(), 2) 
+                    calcValues, and 3) displayValues.</p>
+                    <h5>getValues()</h5>
+                    <p>getValues() returns an array of the values entered into ElementId
+                    ="inputfizz" and ElementId="inputbuzz".</p>
+                    <h5>calcValues()</h5>
+                    <p>calcValues accepts the getValues() returned array as a paramater. It
+                    then loops through 100 checking each value if it is divisible by inputfizz
+                    and inputbuzz and setting the string if it is.  Otherwise passes the index
+                    value. It returns an array of results. 
+                    </p>
+                    <h5>displayValues()</h5>
+                    <p>displayValues() accepts the results array from calcValues(). TemplateRows 
+                    is initially set with a tag of &lt;tr>.  Then it loops through 
+                    the results adding each value between &lt;td>&lt;/td>.It also checks the index
+                    if divisible by 5 and if so, to add a new table row tags of &lt;/tr>&lt;tr>. 
+                    Closing one row and starting another. Finishing the loop the final &lt;/tr> tag 
+                    is added. It then modifies the ElementId="results" with the .innerHMTL method. 
+                    </p>
                </div>
            </div>
        </div>
