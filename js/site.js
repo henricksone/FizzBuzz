@@ -43,3 +43,15 @@ function displayValues(fizzbuzz){
 function main(){
     displayValues(calcValues(getValues()));
 }
+
+// Alternate Logic using Ternary Operator
+/*
+function calcValues(fizzbuzz){
+    let results = [];
+    for (let i = 1; i < 101; i++) {
+        let value = ((i % fizzbuzz[0] == 0 ? 'Fizz' : '') + (i % fizzbuzz[1] == 0 ? 'Buzz' : '') || i);
+        results.push(value);
+    }
+    return results
+}
+*/
